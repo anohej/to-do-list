@@ -1,0 +1,17 @@
+# Python virtual environment
+.venv/
+
+# VSCode settings
+.vscode/
+
+# Ignore system files
+*.log
+*.ini
+*.dat
+
+# Ignore database files
+*.db
+
+# Ignore __pycache__
+__pycache__/
+*.pyc
