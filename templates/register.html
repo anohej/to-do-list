@@ -1,4 +1,3 @@
-
 <form method="POST" class="form">
   <span class="input-span">
     <label class="label">Username</label>
@@ -10,11 +9,8 @@
     <input type="password" name="password" required />
   </span>
 
-  <input class="submit" type="submit" value="Log in" />
-</form>
-<p> dont have an account? <a href="{{ url_for('register') }}">create an account</a></p>
-
-  </form>
+  <input class="submit" type="submit" value="Register" />
+  <p>Already have an account? <a href="{{ url_for('login') }}">Log in here</a></p>
 </form>
 <style>
 .form {
