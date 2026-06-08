@@ -1,0 +1,100 @@
+{# 
+    tos_popup.html
+    Inkluder denne øverst i base.html (eller i hver template) med:
+        {% include 'tos_popup.html' %}
+
+    Popupen vises KUN hvis brukeren ikke har godtatt vilkårene ennå.
+    session['tos_accepted'] settes av /tos/accept-ruten i app.py.
+
+    request.path sender med hvilken side brukeren er på nå,
+    slik at de sendes tilbake dit etter å ha godtatt.
+#}
+
+{% if not session.get('tos_accepted') %}
+
+<!-- Mørk bakgrunn som dekker hele skjermen (overlay) -->
+<div id="tos-overlay" style="
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+">
+
+    <!-- Selve popup-vinduet -->
+    <div style="
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        max-width: 440px;
+        width: 90%;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    ">
+
+        <!-- Tittel -->
+        <h2 style="margin: 0 0 0.75rem; font-size: 1.2rem; font-weight: 600;">
+            📄 Vilkår for bruk
+        </h2>
+
+        <!-- Tekstboks med selve vilkårene — scrollbar hvis teksten er lang -->
+        <div style="
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 1.25rem;
+            color: #333;
+        ">
+            <p style="margin: 0 0 0.75rem;">Denne tjenesten er kun for elever ved skolen. Ved å bruke systemet godtar du følgende:</p>
+            <ul style="margin: 0; padding-left: 1.25rem;">
+                <li style="margin-bottom: 0.4rem;">Du er ansvarlig for innholdet du legger inn.</li>
+                <li style="margin-bottom: 0.4rem;">Personopplysninger lagres i henhold til GDPR.</li>
+                <li style="margin-bottom: 0.4rem;">Kontoen kan slettes ved misbruk av tjenesten.</li>
+                <li>Du kan be om sletting av dine data når som helst.</li>
+            </ul>
+        </div>
+
+        <!-- Knapper: Avvis til venstre, Tillat til høyre -->
+        <div style="display: flex; gap: 10px;">
+
+            <!-- Avvis-knapp: sender til /tos/decline som fjerner session og redirecter til login -->
+            <a href="{{ url_for('tos_decline') }}" style="
+                flex: 1;
+                text-align: center;
+                padding: 10px;
+                border-radius: 8px;
+                border: 1px solid #ccc;
+                color: #333;
+                text-decoration: none;
+                font-size: 0.9rem;
+            ">
+                ✕ Avvis
+            </a>
+
+            <!-- Tillat-knapp: sender til /tos/accept med ?next= slik at brukeren kommer tilbake hit -->
+            <!-- request.path er den siden brukeren er på nå, f.eks. /register -->
+            <a href="{{ url_for('tos_accept', next=request.path) }}" style="
+                flex: 1;
+                text-align: center;
+                padding: 10px;
+                border-radius: 8px;
+                background: #2563eb;
+                color: white;
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-weight: 500;
+            ">
+                ✓ Tillat
+            </a>
+
+        </div>
+    </div>
+</div>
+
+{% endif %}
