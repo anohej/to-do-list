@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FAQ</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #efefef;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #58bc82;
+    }
+
+    .form {
+      --bg-light: #efefef;
+      --bg-dark: #707070;
+      --clr: #58bc82;
+      --clr-alpha: #9c9c9c60;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 30px;
+    }
+
+    .form input, .form textarea {
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      border: none;
+      background-color: var(--clr-alpha);
+      outline: 2px solid var(--bg-dark);
+      width: 100%;
+    }
+
+    .form input:focus, .form textarea:focus {
+      outline: 2px solid var(--clr);
+    }
+
+    .submit {
+      padding: 0.75rem;
+      border-radius: 3rem;
+      background-color: #707070;
+      color: #efefef;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .submit:hover {
+      background-color: #58bc82;
+      color: #707070;
+    }
+
+    .faq-item {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      width: 400px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .faq-item h3 {
+      margin: 0 0 8px 0;
+      color: #333;
+    }
+
+    .faq-item p {
+      margin: 0 0 10px 0;
+      color: #555;
+    }
+
+    .actions a {
+      margin-right: 10px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      color: #58bc82;
+      font-weight: bold;
+    }
+
+    .actions a:hover {
+      text-decoration: underline;
+    }
+
+    .nav {
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+
+    .nav a {
+      color: #58bc82;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .nav a:hover {
+      text-decoration: underline;
+    }
+
+    .empty {
+      color: #707070;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  {% include 'tos_popup.html' %}
+
+  <h1>FAQ</h1>
+
+  <div class="nav">
+    <a href="/">← Tilbake til forsiden</a>
+    &nbsp;|&nbsp;
+    Logget inn som: {{ username }}
+  </div>
+
+  <!-- Skjema for å legge til nytt spørsmål -->
+  <!-- action="/faq/add" sender til add_faq()-ruten i app.py -->
+  <!-- method="POST" fordi vi sender data -->
+  <form method="POST" action="/faq/add" class="form">
+    <input type="text" name="question" placeholder="Spørsmål" required>
+    <textarea name="answer" placeholder="Svar" required></textarea>
+    <input class="submit" type="submit" value="Legg til">
+  </form>
+
+  <!-- Looper gjennom alle FAQ-rader fra databasen -->
+  <!-- faq_items er listen sendt fra render_template() i app.py -->
+  {% for item in faq_items %}
+    <div class="faq-item">
+
+      <!-- item.question og item.answer fungerer fordi vi brukte dictionary=True -->
+      <h3>{{ item.question }}</h3>
+      <p>{{ item.answer }}</p>
+
+      <div class="actions">
+        <!-- item.id sender riktig rad-ID til delete-ruten -->
+        <a href="/faq/delete/{{ item.id }}">Slett</a>
+      </div>
+
+    </div>
+
+  {% else %}
+    <!-- Vises hvis faq_items er tom -->
+    <p class="empty">Ingen spørsmål lagt til ennå.</p>
+
+  {% endfor %}
+
+</body>
+</html>
