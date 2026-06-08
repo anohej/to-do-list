@@ -13,79 +13,93 @@
   <p>Already have an account? <a href="{{ url_for('login') }}">Log in here</a></p>
 </form>
 <style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f8f6f4, #f1ece7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
 .form {
-  --bg-light: #efefef;
-  --bg-dark: #707070;
-  --clr: #58bc82;
-  --clr-alpha: #9c9c9c60;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 35px;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  width: 100%;
-  max-width: 300px;
+  gap: 18px;
+  text-align: center;
 }
 
-.form .input-span {
-  width: 100%;
+.form h2 {
+  margin: 0;
+  color: #5e4b56;
+}
+
+.input-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  text-align: left;
+  gap: 8px;
 }
 
-.form input[type="email"],
-.form input[type="password"] {
-  border-radius: 0.5rem;
-  padding: 1rem 0.75rem;
-  width: 100%;
-  border: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: var(--clr-alpha);
-  outline: 2px solid var(--bg-dark);
-}
-
-.form input[type="email"]:focus,
-.form input[type="password"]:focus {
-  outline: 2px solid var(--clr);
-}
-
-.label {
-  align-self: flex-start;
-  color: var(--clr);
+label {
+  color: #6d5964;
   font-weight: 600;
+  font-size: 14px;
 }
 
-.form .submit {
-  padding: 1rem 0.75rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 3rem;
-  background-color: var(--bg-dark);
-  color: var(--bg-light);
+input {
+  background: #faf7f5;
+  border: 2px solid #ede5df;
+  border-radius: 15px;
+  padding: 14px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #d8c1d1;
+  box-shadow: 0 0 0 4px rgba(216, 193, 209, 0.2);
+}
+
+.submit {
+  background: #d8c1d1;
+  color: #4f3d47;
   border: none;
+  border-radius: 15px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 300ms;
+  transition: 0.3s;
+}
+
+.submit:hover {
+  background: #c8afbf;
+  transform: translateY(-2px);
+}
+
+.bottom-text {
+  font-size: 14px;
+  color: #8a7b85;
+}
+
+.bottom-text a {
+  color: #a17893;
   font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.form .submit:hover {
-  background-color: var(--clr);
-  color: var(--bg-dark);
-}
-
-.span {
   text-decoration: none;
-  color: var(--bg-dark);
 }
 
-.span a {
-  color: var(--clr);
+.bottom-text a:hover {
+  text-decoration: underline;
 }
-
 
 </style>

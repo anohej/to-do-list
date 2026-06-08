@@ -4,84 +4,147 @@
   <title>Tasks</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #efefef;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px;
-    }
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f8f6f4, #f1ece7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  margin: 0;
+  min-height: 100vh;
+}
 
-    h1 {
-      color: #58bc82;
-    }
+h1 {
+  color: #5e4b56;
+  margin-bottom: 10px;
+  text-align: center;
+}
 
-    .form {
-      --bg-light: #efefef;
-      --bg-dark: #707070;
-      --clr: #58bc82;
-      --clr-alpha: #9c9c9c60;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      width: 100%;
-      max-width: 400px;
-      margin-bottom: 30px;
-    }
+p {
+  color: #8a7b85;
+  margin-bottom: 30px;
+}
 
-    .form input, .form textarea {
-      border-radius: 0.5rem;
-      padding: 0.75rem;
-      border: none;
-      background-color: var(--clr-alpha);
-      outline: 2px solid var(--bg-dark);
-      width: 100%;
-    }
+.form {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 25px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
 
-    .form input:focus, .form textarea:focus {
-      outline: 2px solid var(--clr);
-    }
+.form input,
+.form textarea {
+  background: #faf7f5;
+  border: 2px solid #ede5df;
+  border-radius: 15px;
+  padding: 14px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
 
-    .submit {
-      padding: 0.75rem;
-      border-radius: 3rem;
-      background-color: #707070;
-      color: #efefef;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-    }
+.form input:focus,
+.form textarea:focus {
+  border-color: #d8c1d1;
+}
 
-    .submit:hover {
-      background-color: #58bc82;
-      color: #707070;
-    }
+.form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
 
-    .task {
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      width: 400px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+.submit {
+  background: #d8c1d1;
+  color: #4f3d47;
+  border: none;
+  border-radius: 15px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    .done {
-      text-decoration: line-through;
-      color: gray;
-    }
+.submit:hover {
+  background: #c9aec1;
+}
 
-    .actions a {
-      margin-right: 10px;
-      text-decoration: none;
-      font-size: 0.9rem;
-      color: #58bc82;
-      font-weight: bold;
-    }
+.task {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 25px;
+  margin-bottom: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+}
 
-    .actions a:hover {
-      text-decoration: underline;
-    }
+.task h3 {
+  color: #5e4b56;
+  margin-top: 0;
+}
+
+.task p {
+  color: #8a7b85;
+}
+
+.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.actions {
+  margin-top: 15px;
+}
+
+.actions a {
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.actions a:first-child {
+  background: #e4d8dd;
+  color: #5e4b56;
+}
+
+.actions a:last-child {
+  background: #f5d9d9;
+  color: #8b4d4d;
+}
+
+.actions a:hover {
+  opacity: 0.8;
+}
+
+
+.nav-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: #d8c1d1;
+  color: #4f3d47;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.nav-btn:hover {
+  background: #c8afbf;
+  transform: translateY(-2px);
+}
   </style>
 </head>
 <body>
@@ -112,6 +175,9 @@
       </div>
     </div>
   {% endfor %}
+
+
+  <a href="/faq" class="nav-btn">FAQ</a>
 
 </body>
 </html>

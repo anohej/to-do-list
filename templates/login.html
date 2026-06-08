@@ -17,78 +17,86 @@
   </form>
 </form>
 <style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f8f6f4, #f1ece7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
 .form {
-  --bg-light: #efefef;
-  --bg-dark: #707070;
-  --clr: #58bc82;
-  --clr-alpha: #9c9c9c60;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 35px;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  width: 100%;
-  max-width: 300px;
+  gap: 18px;
 }
 
-.form .input-span {
-  width: 100%;
+.input-span {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-}
-
-.form input[type="email"],
-.form input[type="password"] {
-  border-radius: 0.5rem;
-  padding: 1rem 0.75rem;
-  width: 100%;
-  border: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: var(--clr-alpha);
-  outline: 2px solid var(--bg-dark);
-}
-
-.form input[type="email"]:focus,
-.form input[type="password"]:focus {
-  outline: 2px solid var(--clr);
 }
 
 .label {
-  align-self: flex-start;
-  color: var(--clr);
+  color: #6d5964;
   font-weight: 600;
+  margin-bottom: 8px;
 }
 
-.form .submit {
-  padding: 1rem 0.75rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 3rem;
-  background-color: var(--bg-dark);
-  color: var(--bg-light);
+.form input {
+  background: #faf7f5;
+  border: 2px solid #ede5df;
+  border-radius: 15px;
+  padding: 14px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.form input:focus {
+  border-color: #d8c1d1;
+  box-shadow: 0 0 0 4px rgba(216, 193, 209, 0.2);
+}
+
+.submit {
+  background: #d8c1d1;
+  color: #4f3d47;
   border: none;
-  cursor: pointer;
-  transition: all 300ms;
+  border-radius: 15px;
+  padding: 14px;
+  font-size: 15px;
   font-weight: 600;
-  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.form .submit:hover {
-  background-color: var(--clr);
-  color: var(--bg-dark);
+.submit:hover {
+  background: #c8afbf;
+  transform: translateY(-2px);
 }
 
-.span {
+p {
+  margin-top: 20px;
+  color: #8a7b85;
+}
+
+a {
+  color: #a17893;
   text-decoration: none;
-  color: var(--bg-dark);
+  font-weight: 600;
 }
 
-.span a {
-  color: var(--clr);
+a:hover {
+  text-decoration: underline;
 }
 
 

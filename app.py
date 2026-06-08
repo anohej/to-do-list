@@ -231,3 +231,52 @@ if __name__ == '__main__':
 
     app.run(debug=True)  # debug=True gjør at vi får feilmeldinger i nettleseren
 
+
+
+
+@app.route('/faq')
+def faq():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    
+    db = get_db_connection()
+
+    cursor = db.cursor(dictionary=True)
+
+    cursor.execute("SELECT * FROM faq ORDER BY created_at DESC")
+
+    faq_items = cursor.fetchall()
+
+    cursor.close()
+    db.close()
+
+    return render_template('faq.html', faq_items=faq_items, username=session['username'])
+
+
+
+@app.route('/faq/add', methods=['POST'])
+def add_faq():
+
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    
+    question = request.form.get('question')
+    answer = request.form.get('answer')
+
+    if not question or not answer:
+        return redirect(url_for('faq'))
+    
+    db = get_db_connection()
+    cursor = db.cursor()
+
+    cursor.execute(
+        "INSERT INTO faq(question, answer) VALUES (%s, %s)",
+        (question, answer)
+    )
+
+    db.commit()
+    cursor.close()
+    db.close()
+
+    return redirect(url_for('faq'))
+
